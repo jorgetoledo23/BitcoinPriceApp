@@ -2,6 +2,7 @@ package com.example.bitcoinprice
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.CountDownTimer
 import com.example.bitcoinprice.Retrofit.APIService
 import com.example.bitcoinprice.databinding.ActivityMainBinding
 import kotlinx.coroutines.CoroutineScope
@@ -19,7 +20,19 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        getBitcoinPrice()
+        val timer = object: CountDownTimer(20000000000, 5000) {
+            override fun onTick(millisUntilFinished: Long) {
+                getBitcoinPrice()
+            }
+
+            override fun onFinish() {
+
+            }
+        }
+
+        timer.start()
+
+
 
 
     }
